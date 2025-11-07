@@ -1,0 +1,18 @@
+# Backend FastAPI
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Machine Learning
+scikit-learn==1.3.2
+pandas==2.1.3
+numpy==1.26.2
+joblib==1.3.2
+
+# Frontend Streamlit
+streamlit==1.28.2
+plotly==5.18.0
+requests==2.31.0
+
+# Utilities
+python-multipart==0.0.6
