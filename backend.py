@@ -31,7 +31,7 @@ try:
     feature_names = joblib.load('feature_names.pkl')
     print("✅ Modèle et preprocesseurs chargés avec succès!")
 except Exception as e:
-    print(f"❌ Erreur lors du chargement: {e}")
+    print(f" Erreur lors du chargement: {e}")
     model = None
 
 # Modèle de données pour l'entrée
@@ -156,7 +156,7 @@ def get_recommendations(data: CustomerData, probability: float) -> list:
 async def root():
     """Page d'accueil de l'API"""
     return {
-        "message": "🚀 Churn Prediction API",
+        "message": " Churn Prediction API",
         "version": "1.0.0",
         "status": "active",
         "endpoints": {

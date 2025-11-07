@@ -9,18 +9,18 @@ import os
 # Configuration de la page
 st.set_page_config(
     page_title="Churn Prediction App",
-    page_icon="📊",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+API_URL = os.environ.get("API_URL", "http://localhost:8000")
 
-# Option 2: Secrets Streamlit (alternative)
-try:
-    if hasattr(st, 'secrets') and 'API_URL' in st.secrets:
-        API_URL = st.secrets["API_URL"]
-except:
-    pass
+# Secrets Streamlit (alternative)
+# try:
+#     if hasattr(st, 'secrets') and 'API_URL' in st.secrets:
+#         API_URL = st.secrets["API_URL"]
+# except:
+#     pass
 
 # Styles CSS
 st.markdown("""
@@ -96,7 +96,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Titre principal
-st.title("📊 Prédiction de Churn Client")
+st.title(" Prédiction de Churn Client")
 st.markdown("### Système intelligent de prédiction du risque de désabonnement")
 
 # Sidebar
@@ -109,14 +109,14 @@ with st.sidebar:
         try:
             response = requests.get(f"{API_URL}/health", timeout=5)
             if response.status_code == 200:
-                st.success("✅ API connectée")
+                st.success(" API connectée")
             else:
-                st.error("❌ API non disponible")
+                st.error(" API non disponible")
         except:
-            st.error("❌ Impossible de se connecter à l'API")
+            st.error(" Impossible de se connecter à l'API")
     
     st.markdown("---")
-    st.markdown("### 📖 Guide d'utilisation")
+    st.markdown("### Guide d'utilisation")
     st.info("""
     1. Remplissez les informations client
     2. Cliquez sur 'Prédire le Churn'
@@ -124,7 +124,7 @@ with st.sidebar:
     """)
 
 # Onglets principaux
-tab1, tab2, tab3 = st.tabs(["🔮 Prédiction", "📈 Analyse", "ℹ️ À propos"])
+tab1, tab2, tab3 = st.tabs([" Prédiction", " Analyse", " À propos"])
 
 with tab1:
     st.markdown("## Informations Client")
@@ -133,7 +133,7 @@ with tab1:
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("### 👤 Informations Personnelles")
+        st.markdown("###  Informations Personnelles")
         gender = st.selectbox("Genre", ["Male", "Female"])
         seniorcitizen = st.selectbox("Senior Citizen", [0, 1], 
                                      format_func=lambda x: "Oui" if x == 1 else "Non")
@@ -142,7 +142,7 @@ with tab1:
         tenure = st.slider("Ancienneté (mois)", 0, 72, 12)
     
     with col2:
-        st.markdown("### 📞 Services Téléphoniques")
+        st.markdown("###  Services Téléphoniques")
         phoneservice = st.selectbox("Service téléphonique", ["Yes", "No"])
         multiplelines = st.selectbox("Lignes multiples", 
                                     ["No", "Yes", "No phone service"])
@@ -170,20 +170,20 @@ with tab1:
     col4, col5, col6 = st.columns(3)
     
     with col4:
-        st.markdown("### 📋 Contrat")
+        st.markdown("###  Contrat")
         contract = st.selectbox("Type de contrat", 
                                ["Month-to-month", "One year", "Two year"])
         paperlessbilling = st.selectbox("Facturation électronique", ["Yes", "No"])
     
     with col5:
-        st.markdown("### 💳 Paiement")
+        st.markdown("###  Paiement")
         paymentmethod = st.selectbox("Méthode de paiement", 
                                     ["Electronic check", "Mailed check", 
                                      "Bank transfer (automatic)", 
                                      "Credit card (automatic)"])
     
     with col6:
-        st.markdown("### 💰 Finances")
+        st.markdown("###  Finances")
         monthlycharges = st.number_input("Charges mensuelles ($)", 
                                         min_value=0.0, max_value=200.0, 
                                         value=65.0, step=0.5)
@@ -193,7 +193,7 @@ with tab1:
     
     # Bouton de prédiction
     st.markdown("---")
-    if st.button("🔮 Prédire le Churn", type="primary", use_container_width=True):
+    if st.button(" Prédire le Churn", type="primary", use_container_width=True):
         # Préparer les données
         customer_data = {
             "gender": gender,
@@ -231,7 +231,7 @@ with tab1:
                     
                     # Afficher les résultats
                     st.markdown("---")
-                    st.markdown("## 📊 Résultats de la Prédiction")
+                    st.markdown("##  Résultats de la Prédiction")
                     
                     # Métriques principales
                     col1, col2, col3, col4 = st.columns(4)
@@ -292,7 +292,7 @@ with tab1:
                     st.plotly_chart(fig, use_container_width=True)
                     
                     # Recommandations
-                    st.markdown("### 💡 Recommandations")
+                    st.markdown("###  Recommandations")
                     for i, rec in enumerate(result['recommendations'], 1):
                         st.info(f"{i}. {rec}")
                     
@@ -300,10 +300,10 @@ with tab1:
                     st.error(f"Erreur: {response.status_code} - {response.text}")
             
             except Exception as e:
-                st.error(f"❌ Erreur lors de la prédiction: {str(e)}")
+                st.error(f" Erreur lors de la prédiction: {str(e)}")
 
 with tab2:
-    st.markdown("## 📈 Analyse des Facteurs de Risque")
+    st.markdown("##  Analyse des Facteurs de Risque")
     
     # Graphique des facteurs de risque
     risk_factors = {
@@ -325,7 +325,7 @@ with tab2:
     st.plotly_chart(fig, use_container_width=True)
     
     # Profil client
-    st.markdown("### 👤 Profil Client")
+    st.markdown("###  Profil Client")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -343,19 +343,19 @@ with tab2:
         st.write(f"- Charges totales: ${totalcharges:.2f}")
 
 with tab3:
-    st.markdown("## ℹ️ À propos de l'application")
+    st.markdown("##  À propos de l'application")
     
     st.markdown("""
-    ### 🎯 Objectif
+    ###  Objectif
     Cette application utilise le machine learning pour prédire le risque de churn 
     (désabonnement) des clients d'une entreprise de télécommunications.
     
-    ### 🤖 Modèle
+    ###  Modèle
     - **Algorithme**: Random Forest Classifier
     - **Features**: 19 caractéristiques client
     - **Performance**: ~77% d'accuracy, ROC-AUC ~0.84
     
-    ### 📊 Fonctionnalités
+    ###  Fonctionnalités
     - Prédiction en temps réel du risque de churn
     - Analyse des facteurs de risque
     - Recommandations personnalisées
@@ -368,8 +368,4 @@ with tab3:
 
 # Footer
 st.markdown("---")
-st.markdown("""
-<div style='text-align: center'>
-    <p>📧 Pour toute question ou suggestion, contactez l'équipe de développement</p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown("© 2024 Nancy Dobé - Tous droits réservés.")
