@@ -1,7 +1,6 @@
-version: '3.8'
-
 services:
   backend:
+    image: cycydob1/churn-backend:latest
     build:
       context: ./Backend
       dockerfile: Dockerfile
@@ -15,6 +14,7 @@ services:
     restart: unless-stopped
 
   frontend:
+    image: cycydob1/churn-frontend:latest
     build:
       context: ./Frontend
       dockerfile: Dockerfile

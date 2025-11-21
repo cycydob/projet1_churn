@@ -1,0 +1,10 @@
+**/__pycache__
+**/*.pyc
+**/.git
+**/.vscode
+**/.ipynb_checkpoints
+**/notebook
+*.ipynb
+*.pkl
+.github
+docker-compose.yml
